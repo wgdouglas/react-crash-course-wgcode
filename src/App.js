@@ -1,7 +1,8 @@
 import './App.css';
+import { ProductCard } from './components/ProductCard';
 
 function App() {
-  return (<div className="App"> React Crash Course</div>
+  return (<div className="App"> <ProductCard /></div>
   );
 }
 
