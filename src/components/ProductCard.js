@@ -1,12 +1,12 @@
 // import "./ProductCard.css";
 import styles from "./ProductCard.module.css"
+import { useState } from "react";
 export function ProductCard({ product, background = "slategray", onPurchase}) {
 
-let stockCount = product.stockCount;
+const [stockCount, setStockCount] = useState(product.stockCount);
 
 function handleClick(){
-    stockCount = stockCount - 1;
-    console.log("stockCount", stockCount);
+    setStockCount(stockCount - 1);
     onPurchase(product);
 }
 
