@@ -4,3 +4,5 @@
   padding: 64px 16px 16px;
   
 }
+.ListDivider{ borderColor: slategray}
+.ListHeader{ margin: 8px 0 }

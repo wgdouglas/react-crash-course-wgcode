@@ -1,41 +1,47 @@
-export function ProductCard() {
-
-const product = {
-    imageSrc:"images/iphone.png",
-    title: "iPhone 15 Pro",
-    specification: [
-        "A17 Pro chip with 6-core GPU",
-        "3x or 5x Telephoto camera",
-        "Up to 29 hours video playback"
-    ],
-    price: 999
-
-}
+import "./ProductCard.css";
+export function ProductCard({ product, background = "slategray", handleClick}) {
 
     return (
       <article
-        style={{
-            border:"1px solid white",
-            borderRadius:"8px",
-            padding:"6px",
-            textAlign:"center"
-        }}
+      className="Container"
+        style={{background}}
       >
 
       <h2>{product.title}</h2>
       <img
         src={product.imageSrc}
         alt="iPhone 15 Pro"
-        width="128px"
-        height="128px"
+        width={128}
+        height={128}
       />
       <p>Specification:</p>
-      <ul style={{listStyle: "none", padding:0}}>
-        <li>{product.specification[0]}</li>
-        <li>{product.specification[1]}</li>
-        <li>{product.specification[2]}</li>
-      </ul>
-      <button>Buy (From ${product.price})</button>
+      <ul className="SpecificationList">
+        {product.specification.map((specific, index) => (
+            <li key={index}> {specific}  </li>
+        ))}
+       </ul>
+       <Status stockCount={product.stockCount}/>
+      {product.stockCount > 0 && (
+        <button onClick={() => handleClick(product)}>
+            Buy (From ${product.price})
+        </button>
+        )}
     </article>
     );
+  }
+
+  function Status({ stockCount }) {
+
+    // This is the way with ternary operation
+    // return stockCount === 0 ? (
+    //     <p style={{ fontSize: "14px", color: "lightsalmon" }}>Not Available</p>
+    //         ) : (
+    //     <p style={{ fontStyle:"14px", color: "lightgreen" }}>{stockCount} items Available</p>)
+
+    const notAvailable=(
+    <p className="StatusNotAvailable">Not Available</p>);
+
+    const availableTemplate =(
+    <p className="StatusItemIsAvailable">{stockCount} items Available</p>);
+    return stockCount === 0 ? notAvailable : availableTemplate;
   }

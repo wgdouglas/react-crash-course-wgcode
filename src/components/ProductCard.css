@@ -1,0 +1,22 @@
+
+.Container {
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    }
+
+.SpecificationList {
+    list-style: none; 
+    padding:0; 
+}
+
+.StatusNotAvailable{ 
+    font-size:14px; 
+    color:lightsalmon; }
+
+.StatusItemIsAvailable{ 
+    font-size:14px; 
+    color:lightgreen; }
+
