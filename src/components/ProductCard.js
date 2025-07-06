@@ -3,46 +3,53 @@ import styles from "./ProductCard.module.css"
 import { useState } from "react";
 export function ProductCard({ product, background = "slategray", onPurchase}) {
 
-const [stockCount, setStockCount] = useState(product.stockCount);
-const [showMoreItems, setShowMoreItems] = useState(false);
+    const [stockCount, setStockCount] = useState(product.stockCount);
+    const [showMoreItems, setShowMoreItems] = useState(false);
 
-function handleClick(){
-    setStockCount(stockCount - 1);
-    onPurchase(product);
-}
+    function handleClick(){
+        setStockCount((prevoiusState) => prevoiusState - 1);
+        onPurchase(product);
+    }
 
-    return (
-      <article
-      className={styles.Container}
-        style={{ background }}
-      >
+    function handleTwoClicks(){
+        setStockCount((prevoiusState) => prevoiusState - 1);
+        setStockCount((prevoiusState) => prevoiusState - 1);
+    }
 
-      <h2>{product.title}</h2>
-      <img
-        src={product.imageSrc}
-        alt="iPhone 15 Pro"
-        width={128}
-        height={128}
-      />
-      <p>Specification:{" "}
-        <button onClick={() => setShowMoreItems(!showMoreItems)}>
-            {showMoreItems ? "hide" : "show"}
-        </button>
-      </p>
+        return (
+        <article
+        className={styles.Container}
+            style={{ background }}
+        >
 
-      {showMoreItems &&(
-              <ul className={styles.SpecificationList}>
-        {product.specification.map((specific, index) => (
-            <li key={index}> {specific}  </li>
-        ))}
-       </ul>
-      )}
-       <Status stockCount={stockCount}/>
-      {product.stockCount > 0 && (
-        <button onClick={handleClick}>
-            Buy (From ${product.price})
-        </button>
+        <h2>{product.title}</h2>
+        <img
+            src={product.imageSrc}
+            alt="iPhone 15 Pro"
+            width={128}
+            height={128}
+        />
+        <p>Specification:{" "}
+            <button onClick={() => setShowMoreItems(!showMoreItems)}>
+                {showMoreItems ? "hide" : "show"}
+            </button>
+        </p>
+
+        {showMoreItems &&(
+                <ul className={styles.SpecificationList}>
+            {product.specification.map((specific, index) => (
+                <li key={index}> {specific}  </li>
+            ))}
+        </ul>
         )}
+        <Status stockCount={stockCount}/>
+        {product.stockCount > 0 && (
+            <>
+            <p>Price:{product.price}</p>
+            <button onClick={handleClick}>Buy</button>
+            </>
+        )}
+        {stockCount > 1 && <button onClick={handleTwoClicks}>Buy 2</button>}
     </article>
     );
   }
