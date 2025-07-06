@@ -4,6 +4,7 @@ import { useState } from "react";
 export function ProductCard({ product, background = "slategray", onPurchase}) {
 
 const [stockCount, setStockCount] = useState(product.stockCount);
+const [showMoreItems, setShowMoreItems] = useState(false);
 
 function handleClick(){
     setStockCount(stockCount - 1);
@@ -23,12 +24,19 @@ function handleClick(){
         width={128}
         height={128}
       />
-      <p>Specification:</p>
-      <ul className={styles.SpecificationList}>
+      <p>Specification:{" "}
+        <button onClick={() => setShowMoreItems(!showMoreItems)}>
+            {showMoreItems ? "hide" : "show"}
+        </button>
+      </p>
+
+      {showMoreItems &&(
+              <ul className={styles.SpecificationList}>
         {product.specification.map((specific, index) => (
             <li key={index}> {specific}  </li>
         ))}
        </ul>
+      )}
        <Status stockCount={stockCount}/>
       {product.stockCount > 0 && (
         <button onClick={handleClick}>
