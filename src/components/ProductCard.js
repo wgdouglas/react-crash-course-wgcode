@@ -1,5 +1,5 @@
 import "./ProductCard.css";
-export function ProductCard({ product, background = "slategray", handleClick}) {
+export function ProductCard({ product, background = "slategray", onPurchase}) {
 
     return (
       <article
@@ -22,7 +22,7 @@ export function ProductCard({ product, background = "slategray", handleClick}) {
        </ul>
        <Status stockCount={product.stockCount}/>
       {product.stockCount > 0 && (
-        <button onClick={() => handleClick(product)}>
+        <button onClick={() => onPurchase(product)}>
             Buy (From ${product.price})
         </button>
         )}

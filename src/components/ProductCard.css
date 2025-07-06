@@ -5,7 +5,7 @@
     border-radius: 8px;
     padding: 16px;
     text-align: center;
-    }
+}
 
 .SpecificationList {
     list-style: none; 
@@ -14,9 +14,11 @@
 
 .StatusNotAvailable{ 
     font-size:14px; 
-    color:lightsalmon; }
+    color:lightsalmon; 
+}
 
 .StatusItemIsAvailable{ 
     font-size:14px; 
-    color:lightgreen; }
+    color:lightgreen; 
+}
 

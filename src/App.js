@@ -43,8 +43,8 @@ function App() {
 ];
 
 
-function handleClick(products){
-  alert(`The price of ${products.title} is ${products.price}`);
+function handlePurchase(products){
+  alert(`The price of ${products.title} is $${products.price}`);
 }
 
   return (
@@ -54,7 +54,7 @@ function handleClick(products){
         {products.map((product =>
           <ProductCard 
           product={product} 
-          onClick={handleClick} 
+          onPurchase={handlePurchase} 
           key={product.title}/>
         )) 
       }
