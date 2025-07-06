@@ -1,4 +1,4 @@
-import './App.css';
+import styles from "./App.module.css";
 import { ProductCard } from './components/ProductCard';
 import { ProductList } from './components/ProductList';
 import { Fragment } from 'react';
@@ -49,7 +49,7 @@ function handlePurchase(products){
 
   return (
   
-    <div className="App"> 
+    <div className={styles.App}> 
       <ProductList>
         {products.map((product =>
           <ProductCard 
@@ -64,8 +64,8 @@ function handlePurchase(products){
         {products.filter(({ price }) => price <= 500)
         .map(({ title, price }) =>(
           <Fragment key={title}>
-          <hr className='ListDivider' />
-          <p className='ListHeader'>
+          <hr className={styles.ListDivider} />
+          <p className={styles.ListHeader}>
             {title} costs ${price}
           </p>
         </Fragment>
