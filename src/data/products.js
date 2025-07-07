@@ -1,5 +1,6 @@
 export const products = [
     {
+    id: 1,
     imageSrc:"images/iphone.png",
     title: "iPhone 15 Pro",
     specification: [
@@ -12,6 +13,7 @@ export const products = [
 
 },
 {
+  id: 2,
   imageSrc: "images/airpods.png",
   title: "AirPods Pro 2",
   specification: [
@@ -23,6 +25,7 @@ export const products = [
   stockCount:0,
 },
 {
+  id: 3,
   imageSrc: "images/watch.png",
   title: "Apple Watch 9",
   specification: [
