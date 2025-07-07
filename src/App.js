@@ -4,11 +4,13 @@ import { ProductList } from './components/ProductList';
 import { ProductFilter } from "./components/ProductFilter";
 import { Fragment } from 'react';
 import { useState } from "react";
+import { products as  ProductLists} from "./data/products";
 
 function App() {
 
   const products = [
     {
+      id: 1,
     imageSrc:"images/iphone.png",
     title: "iPhone 15 Pro",
     specification: [
@@ -21,6 +23,7 @@ function App() {
 
 },
 {
+  id: 2,
   imageSrc: "images/airpods.png",
   title: "AirPods Pro 2",
   specification: [
@@ -32,6 +35,7 @@ function App() {
   stockCount:0,
 },
 {
+  id: 3,
   imageSrc: "images/watch.png",
   title: "Apple Watch 9",
   specification: [
@@ -51,6 +55,8 @@ const [filters, setFilters] = useState({
   }
 });
 
+const [favorites, setFavorites] = useState([]);
+
 function handlePurchase(products){
   alert(`The price of ${products.title} is $${products.price}`);
 }
@@ -62,6 +68,16 @@ function handleFilter(key, value) {
   }))
 }
 
+function handleFavorites(productId){
+  if(favorites.includes(products.id)){
+    setFavorites((prevFavorites) => 
+    prevFavorites.filter((id) => id !== productId))
+  } else {
+    setFavorites((prevFavorites) => 
+    [...prevFavorites, productId])
+  }
+}
+
   return (
   
     <div className={styles.App}> 
@@ -70,6 +86,8 @@ function handleFilter(key, value) {
           <ProductCard 
           product={product} 
           onPurchase={handlePurchase} 
+          isFavorite={favorites.includes(product.id)}
+          onFavorite={handleFavorites}
           key={product.title}/>
         )) 
       }
