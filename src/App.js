@@ -1,7 +1,9 @@
 import styles from "./App.module.css";
 import { ProductCard } from './components/ProductCard';
 import { ProductList } from './components/ProductList';
+import { ProductFilter } from "./components/ProductFilter";
 import { Fragment } from 'react';
+import { useState } from "react";
 
 function App() {
 
@@ -42,9 +44,22 @@ function App() {
 },
 ];
 
+const [filters, setFilters] = useState({
+  price: {
+    min:0,
+    max:999,
+  }
+});
 
 function handlePurchase(products){
   alert(`The price of ${products.title} is $${products.price}`);
+}
+
+function handleFilter(key, value) {
+  setFilters((prevFilters) => ({
+    ...prevFilters.price,
+    [key]: value
+  }))
 }
 
   return (
@@ -60,8 +75,11 @@ function handlePurchase(products){
       }
       </ProductList>
 
-      <h2>Produtcs less than $500:
-        {products.filter(({ price }) => price <= 500)
+      <h2>Produtcs filtered by price:
+        <ProductFilter 
+        filters={filters} onFilter={handleFilter}
+        />
+        {products.filter(({ price }) => price >= filters.price.min && price <= filters.price.max)
         .map(({ title, price }) =>(
           <Fragment key={title}>
           <hr className={styles.ListDivider} />
